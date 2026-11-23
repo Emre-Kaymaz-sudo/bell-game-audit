@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bell-game-audit"
+version = "0.2.0"
+description = "Exact classical benchmarks and reproducible referee schedules for finite Bell games"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26,<3"]
+
+[project.optional-dependencies]
+figures = ["reportlab>=4"]
+
+[project.scripts]
+bell-game-audit = "bell_game_audit.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Emre-Kaymaz-sudo/bell-game-audit"
+
+[tool.setuptools.packages.find]
+include = ["bell_game_audit", "bell_game_audit.*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+bell_game_audit = ["data/model.json"]

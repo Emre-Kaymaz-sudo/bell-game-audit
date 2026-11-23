@@ -7,8 +7,8 @@ import json
 from pathlib import Path
 import unittest
 
-from private_history import private_position_bounds
-from quota_audit import audit, position_bounds
+from bell_game_audit.audit.private_history import private_position_bounds
+from bell_game_audit.audit.quota import audit, position_bounds
 
 
 CHSH = [[0, 0], [0, 1]]
@@ -51,7 +51,7 @@ class QuotaAuditTests(unittest.TestCase):
             self.assertEqual(private_position_bounds(weights, parity)[1], expected)
 
     def test_quota_game_and_private_upper_certificate(self):
-        result = json.loads(Path(__file__).with_name("result.json").read_text(encoding="utf-8"))
+        result = json.loads((Path(__file__).resolve().parents[1] / "result.json").read_text(encoding="utf-8"))
         report = audit(result)
         self.assertEqual(report["iid_classical_win"]["fraction"], "22/27")
         self.assertEqual(report["public_quota_classical_win"]["fraction"], "492544354319/542115674100")

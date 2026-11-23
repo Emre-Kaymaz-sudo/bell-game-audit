@@ -5,7 +5,7 @@ import unittest
 from collections import Counter
 from itertools import product
 
-from referee import replay
+from bell_game_audit.protocol.referee import replay
 
 
 WEIGHTS = [[1, 2, 3], [4, 5, 6], [1, 2, 3]]

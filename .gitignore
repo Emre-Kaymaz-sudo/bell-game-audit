@@ -3,3 +3,6 @@ __pycache__/
 .venv/
 /reproduced-*.json
 /round100.bin
+*.egg-info/
+/build/
+/dist/

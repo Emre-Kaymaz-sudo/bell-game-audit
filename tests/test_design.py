@@ -6,7 +6,7 @@ import unittest
 
 import numpy as np
 
-from solver import classical_bias, planar_witness, quantum_upper
+from bell_game_audit.design.solver import classical_bias, planar_witness, quantum_upper
 
 
 def exhaustive_classical_bias(matrix):

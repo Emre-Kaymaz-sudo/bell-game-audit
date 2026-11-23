@@ -2,21 +2,21 @@
 
 from copy import deepcopy
 import json
-from pathlib import Path
 import unittest
 
 import numpy as np
 
-from controls import controls
-from run_search import balanced_weights, model_correlations, search_tables
-from sensitivity import sweep
-from verify_result import verify_result
+from bell_game_audit.resources import default_model
+from bell_game_audit.design.controls import controls
+from bell_game_audit.design.search import balanced_weights, model_correlations, search_tables
+from bell_game_audit.design.sensitivity import sweep
+from bell_game_audit.design.verify import verify_result
 
 
 class InverseDesignTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.model = json.loads(Path(__file__).with_name("model.json").read_text(encoding="utf-8"))
+        cls.model = json.loads(default_model.read_text(encoding="utf-8"))
         cls.result = search_tables(cls.model)
 
     def test_grid_and_witness(self):

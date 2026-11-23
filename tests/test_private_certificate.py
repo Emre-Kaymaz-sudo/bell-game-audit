@@ -8,12 +8,12 @@ from copy import deepcopy
 from fractions import Fraction
 from pathlib import Path
 
-from private_history import private_position_bounds
-from build_private_certificate import build
-from verify_private_certificate import verify
+from bell_game_audit.audit.private_history import private_position_bounds
+from bell_game_audit.certificates.build import build
+from bell_game_audit.certificates.verify import verify
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def deterministic_wins(weights, parity):
@@ -49,7 +49,7 @@ class PrivateCertificateTests(unittest.TestCase):
         self.assertEqual(rechecked["upper"], report["upper"])
 
     def test_full_grid_reproduces_published_counts(self):
-        from survey_private import survey
+        from bell_game_audit.certificates.survey import survey
 
         result = survey()
         self.assertEqual(result["verified_component_certificates"], 217 * 16)

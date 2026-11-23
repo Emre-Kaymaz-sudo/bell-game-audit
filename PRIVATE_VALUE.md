@@ -46,10 +46,10 @@ There are 217 integer 3×3 quota matrices in the original search space and 512 t
 For the grid survey, flipping all target bits in one row or column amounts to flipping the corresponding local output. There are 16 representative targets with zero first row and first column, and 32 relabelings per representative. The survey verifies **3,472** component certificates with explicit local actions. Using their supports, it also scores **all 64 deterministic response pairs on all 111,104 labelled games**, including the original target bits. In every game the component upper bound equals the achievable static score exactly, using integers. Multiplying every quota by the same positive integer preserves this result, by repeating the certified component cover. No equal-value conclusion is drawn about other quota shapes or intermediate public disclosures.
 
 ```bash
-python build_private_certificate.py result.json --output private_certificate.json
-python -I -S verify_private_certificate.py result.json private_certificate.json
-python survey_private.py --output private_survey.json
+python -m bell_game_audit build-certificate result.json --output private_certificate.json
+python -I -S bell_game_audit/certificates/verify.py result.json private_certificate.json
+python -m bell_game_audit survey --output private_survey.json
 python -m unittest discover -v
 ```
 
-The verification command requires only the standard library and reads the actual cells and multiplicities from the two JSON files. The six-card unit test separately enumerates all 720 physical shuffles and compares the conditional prefix frequencies against the histories simulated by local relabelings. [Independent verifier](verify_private_certificate.py) · [Conditional-distribution tests](test_private_certificate.py)
+The verification command requires only the standard library and reads the actual cells and multiplicities from the two JSON files. The six-card unit test separately enumerates all 720 physical shuffles and compares the conditional prefix frequencies against the histories simulated by local relabelings. [Independent verifier](bell_game_audit/certificates/verify.py) · [Conditional-distribution tests](tests/test_private_certificate.py)
