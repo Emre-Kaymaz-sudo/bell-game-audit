@@ -1,0 +1,224 @@
+{
+  "settings": {
+    "alice_deg": [
+      0,
+      60,
+      120
+    ],
+    "bob_deg": [
+      30,
+      90,
+      150
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "nominal",
+      "visibility": 0.99,
+      "eta_a": [
+        0.98,
+        0.98,
+        0.98
+      ],
+      "eta_b": [
+        0.98,
+        0.98,
+        0.98
+      ],
+      "offset_a_deg": [
+        0,
+        0,
+        0
+      ],
+      "offset_b_deg": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "alice_last_channel_loss",
+      "visibility": 0.985,
+      "eta_a": [
+        0.985,
+        0.965,
+        0.86
+      ],
+      "eta_b": [
+        0.96,
+        0.98,
+        0.97
+      ],
+      "offset_a_deg": [
+        0,
+        1.5,
+        -3
+      ],
+      "offset_b_deg": [
+        1,
+        0,
+        -1
+      ]
+    },
+    {
+      "name": "bob_middle_channel_loss",
+      "visibility": 0.98,
+      "eta_a": [
+        0.975,
+        0.96,
+        0.98
+      ],
+      "eta_b": [
+        0.98,
+        0.87,
+        0.955
+      ],
+      "offset_a_deg": [
+        -1,
+        0.5,
+        1.5
+      ],
+      "offset_b_deg": [
+        0,
+        -3,
+        2
+      ]
+    }
+  ],
+  "weight_tables": 217,
+  "parity_tables": 512,
+  "labelled_candidates": 111104,
+  "winner": {
+    "weights": [
+      [
+        4,
+        1,
+        4
+      ],
+      [
+        4,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        4
+      ]
+    ],
+    "target_parity": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "classical_win": 0.8148148148148149,
+    "scenario_wins": {
+      "nominal": 0.8660874769555388,
+      "alice_last_channel_loss": 0.8444824042126047,
+      "bob_middle_channel_loss": 0.8436322066007937
+    },
+    "worst_gap_pp": 2.8817391785978863,
+    "ideal_reoptimized_win_interval": [
+      0.8888888888888888,
+      0.8888888888889359
+    ]
+  },
+  "best_uniform": {
+    "weights": [
+      [
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        3
+      ]
+    ],
+    "target_parity": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "classical_win": 0.7777777777777778,
+    "scenario_wins": {
+      "nominal": 0.7745822743833207,
+      "alice_last_channel_loss": 0.7574968197460314,
+      "bob_middle_channel_loss": 0.7591733181490801
+    },
+    "worst_gap_pp": -2.0280958031746343
+  },
+  "optimized_for_first_scenario": {
+    "weights": [
+      [
+        4,
+        1,
+        4
+      ],
+      [
+        4,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        4
+      ]
+    ],
+    "target_parity": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ]
+    ],
+    "classical_win": 0.8148148148148149,
+    "scenario_wins": {
+      "nominal": 0.8660874769555388,
+      "alice_last_channel_loss": 0.8444824042126047,
+      "bob_middle_channel_loss": 0.8436322066007937
+    },
+    "worst_gap_pp": 2.8817391785978863
+  }
+}

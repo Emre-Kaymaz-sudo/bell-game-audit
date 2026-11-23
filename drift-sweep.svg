@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="900" height="510" preserveAspectRatio="xMinYMin meet" viewBox="0 0 900 510" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>Robustness to measurement drift</title>
+	<desc>Worst-case win margins over the classical optimum as the maximum additional offset of Bob's middle measurement increases. Squares and the dashed line represent the frozen game. Circles and the solid line represent the redesigned game.</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="900" height="510"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-510)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="0" width="900" height="510" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="37" y="466" style="font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 28px;fill: rgb(9%,18%,22%); stroke:none;" transform="translate(0,932) scale(1,-1)">Robustness to measurement drift</text>
+			<text x="38" y="441" style="font-family: Arial, Helvetica, sans-serif; font-size: 15px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,882) scale(1,-1)">Both games face the same offsets and detector-loss scenarios.</text>
+			<text x="68" y="393" style="font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 13px;fill: rgb(9%,18%,22%); stroke:none;" transform="translate(0,786) scale(1,-1)">Worst-case win margin (percentage points)</text>
+			<path d="M 582,399 L 616,399 Z" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2.4;"/>
+			<circle cx="599" cy="399" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<text x="624" y="395" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(9%,18%,22%); stroke:none;" transform="translate(0,790) scale(1,-1)">Redesigned game</text>
+			<path d="M 747,399 L 781,399 Z" style="stroke: rgb(63%,25%,13%); stroke-linecap: butt; stroke-width: 2.4; stroke-dasharray: 7, 4;"/>
+			<rect x="761" y="396" width="6" height="6" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<text x="789" y="395" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(9%,18%,22%); stroke:none;" transform="translate(0,790) scale(1,-1)">Frozen game</text>
+			<rect x="666.1111111111111" y="122" width="14.0" height="248" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,96%,96%); fill-rule: evenodd;"/>
+			<path d="M 68,143.565217 L 846,143.565217 Z" style="stroke: rgb(86%,89%,89%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<text x="44.332" y="139.56521739130434" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,279) scale(1,-1)">-2</text>
+			<path d="M 68,186.695652 L 846,186.695652 Z" style="stroke: rgb(86%,89%,89%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<text x="44.332" y="182.69565217391306" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,365) scale(1,-1)">-1</text>
+			<path d="M 68,229.826087 L 846,229.826087 Z" style="stroke: rgb(34%,42%,45%); stroke-linecap: butt; stroke-width: 1.5;"/>
+			<text x="48.328" y="225.82608695652175" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,451) scale(1,-1)">0</text>
+			<path d="M 68,272.956522 L 846,272.956522 Z" style="stroke: rgb(86%,89%,89%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<text x="41.32" y="268.95652173913044" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,537) scale(1,-1)">+1</text>
+			<path d="M 68,316.086957 L 846,316.086957 Z" style="stroke: rgb(86%,89%,89%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<text x="41.32" y="312.0869565217391" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,624) scale(1,-1)">+2</text>
+			<path d="M 68,359.217391 L 846,359.217391 Z" style="stroke: rgb(86%,89%,89%); stroke-linecap: butt; stroke-width: 0.8;"/>
+			<text x="41.32" y="355.2173913043478" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,710) scale(1,-1)">+3</text>
+			<text x="64.664" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">0</text>
+			<text x="151.10844444444444" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">5</text>
+			<text x="234.2168888888889" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">10</text>
+			<text x="320.6613333333333" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">15</text>
+			<text x="407.10577777777775" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">20</text>
+			<text x="493.5502222222222" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">25</text>
+			<text x="579.9946666666666" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">30</text>
+			<text x="666.4391111111111" y="104" style="font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 12px;fill: rgb(0%,43%,43%); stroke:none;" transform="translate(0,208) scale(1,-1)">35</text>
+			<text x="752.8835555555555" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">40</text>
+			<text x="839.328" y="104" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;fill: rgb(27%,35%,40%); stroke:none;" transform="translate(0,208) scale(1,-1)">45</text>
+			<text x="296.45000000000005" y="80" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;fill: rgb(9%,18%,22%); stroke:none;" transform="translate(0,160) scale(1,-1)">Maximum extra offset on Bob's middle setting (degrees)</text>
+			<g transform="">
+				<g transform=""/>
+				<g transform=""/>
+				<g transform="">
+					<polyline points="68 354.1168, 154.4444 347.3881, 240.8889 338.4484, 327.3333 326.9654, 413.7778 312.2029, 500.2222 294.2731, 586.6667 273.3125, 673.1111 249.4808, 759.5556 222.9591, 846 193.9494" style="stroke: rgb(0%,43%,43%); stroke-linecap: round; stroke-width: 2.6; fill: None; fill-rule: evenodd;"/>
+					<polyline points="68 354.1168, 154.4444 347.3881, 240.8889 333.2826, 327.3333 315.5747, 413.7778 294.399, 500.2222 269.9167, 586.6667 242.3141, 673.1111 211.8014, 759.5556 178.6107, 846 142.9946" style="stroke: rgb(63%,25%,13%); stroke-linecap: round; stroke-width: 2.2; fill: None; fill-rule: evenodd; stroke-dasharray: 7, 4;"/>
+				</g>
+			</g>
+			<circle cx="68.0" cy="354.11675065952625" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="154.44444444444446" cy="347.3881001455394" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="240.88888888888889" cy="338.448358356831" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="327.3333333333333" cy="326.9653927685266" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="413.77777777777777" cy="312.2028504695733" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="500.22222222222223" cy="294.2730833207321" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="586.6666666666666" cy="273.3125476762959" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="673.1111111111111" cy="249.4807658688359" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="759.5555555555555" cy="222.9591121479312" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<circle cx="846.0" cy="193.94943231260882" r="5" style="stroke: rgb(0%,43%,43%); stroke-linecap: butt; stroke-width: 2; fill: rgb(100%,100%,100%); fill-rule: evenodd;"/>
+			<rect x="65.25" y="351.3667506595258" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="151.69444444444446" y="344.63810014553894" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="238.13888888888889" y="330.53264784579994" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="324.5833333333333" y="312.82468403426776" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="411.02777777777777" y="291.6489770079095" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="497.47222222222223" y="267.1666866834373" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="583.9166666666666" y="239.5641380730313" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="670.3611111111111" y="209.05140323849105" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="756.8055555555555" y="175.86070251600137" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="843.25" y="140.24463717915242" width="5.5" height="5.5" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(63%,25%,13%); fill-rule: evenodd;"/>
+			<rect x="36" y="18" width="828" height="40" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(92%,96%,96%); fill-rule: evenodd;"/>
+			<text x="50" y="34" style="font-family: Arial, Helvetica, sans-serif; font-weight: 700; font-size: 14px;fill: rgb(0%,43%,43%); stroke:none;" transform="translate(0,68) scale(1,-1)">At 35°</text>
+			<text x="111" y="34" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px;fill: rgb(9%,18%,22%); stroke:none;" transform="translate(0,68) scale(1,-1)">The frozen game falls to -0.42 pp. The redesigned game retains a +0.46 pp margin.</text>
+		</g>
+	</g>
+</svg>

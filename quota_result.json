@@ -1,0 +1,371 @@
+{
+  "rounds": 27,
+  "iid_classical_win": {
+    "fraction": "22/27",
+    "value": 0.8148148148148148
+  },
+  "private_quota_classical_interval": {
+    "lower": {
+      "fraction": "22/27",
+      "value": 0.8148148148148148
+    },
+    "upper": {
+      "fraction": "22/27",
+      "value": 0.8148148148148148
+    },
+    "status": "exact",
+    "component_bound": {
+      "status": "exact",
+      "rounds": 27,
+      "lower": "22/27",
+      "upper": "22/27",
+      "components": [
+        {
+          "name": "3x3 rectangle",
+          "copies": 1,
+          "support": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "cells_per_copy": 9,
+          "wins_per_copy": 7,
+          "loss_per_copy": 2,
+          "total_loss": 2
+        },
+        {
+          "name": "six-edge cycle",
+          "copies": 3,
+          "support": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "cells_per_copy": 6,
+          "wins_per_copy": 5,
+          "loss_per_copy": 1,
+          "total_loss": 3
+        }
+      ]
+    },
+    "rectangle_only_upper": {
+      "fraction": "8/9",
+      "value": 0.8888888888888888
+    },
+    "disjoint_chsh_rectangles": [
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    ]
+  },
+  "public_quota_classical_win": {
+    "fraction": "492544354319/542115674100",
+    "value": 0.9085595157098225
+  },
+  "public_quota_expected_block_wins": {
+    "fraction": "492544354319/20078358300",
+    "value": 24.531106924165208
+  },
+  "classical_increase_pp": {
+    "fraction": "50820471719/5421156741",
+    "value": 9.374470089500775
+  },
+  "public_quota_by_position": [
+    {
+      "round": 1,
+      "remaining": 27,
+      "fraction": "22/27",
+      "value": 0.8148148148148148
+    },
+    {
+      "round": 2,
+      "remaining": 26,
+      "fraction": "97/117",
+      "value": 0.8290598290598291
+    },
+    {
+      "round": 3,
+      "remaining": 25,
+      "fraction": "817/975",
+      "value": 0.837948717948718
+    },
+    {
+      "round": 4,
+      "remaining": 24,
+      "fraction": "7402/8775",
+      "value": 0.8435327635327635
+    },
+    {
+      "round": 5,
+      "remaining": 23,
+      "fraction": "22837/26910",
+      "value": 0.8486436269044965
+    },
+    {
+      "round": 6,
+      "remaining": 22,
+      "fraction": "252883/296010",
+      "value": 0.8543055977838586
+    },
+    {
+      "round": 7,
+      "remaining": 21,
+      "fraction": "5345663/6216210",
+      "value": 0.8599553425640382
+    },
+    {
+      "round": 8,
+      "remaining": 20,
+      "fraction": "55673/64350",
+      "value": 0.8651592851592852
+    },
+    {
+      "round": 9,
+      "remaining": 19,
+      "fraction": "1112389/1278225",
+      "value": 0.8702607130982417
+    },
+    {
+      "round": 10,
+      "remaining": 18,
+      "fraction": "3357664/3834675",
+      "value": 0.8756058857660688
+    },
+    {
+      "round": 11,
+      "remaining": 17,
+      "fraction": "75092/85215",
+      "value": 0.8812063603825617
+    },
+    {
+      "round": 12,
+      "remaining": 16,
+      "fraction": "670307/755820",
+      "value": 0.8868606281918976
+    },
+    {
+      "round": 13,
+      "remaining": 15,
+      "fraction": "11637581/13037895",
+      "value": 0.8925966193162317
+    },
+    {
+      "round": 14,
+      "remaining": 14,
+      "fraction": "42059917/46802700",
+      "value": 0.8986643291946832
+    },
+    {
+      "round": 15,
+      "remaining": 13,
+      "fraction": "15738391/17383860",
+      "value": 0.9053450154338565
+    },
+    {
+      "round": 16,
+      "remaining": 12,
+      "fraction": "7931881/8691930",
+      "value": 0.9125569349960251
+    },
+    {
+      "round": 17,
+      "remaining": 11,
+      "fraction": "14661676/15935205",
+      "value": 0.9200807896729286
+    },
+    {
+      "round": 18,
+      "remaining": 10,
+      "fraction": "1134559/1222650",
+      "value": 0.9279507626876048
+    },
+    {
+      "round": 19,
+      "remaining": 9,
+      "fraction": "39517873/42181425",
+      "value": 0.9368548596923882
+    },
+    {
+      "round": 20,
+      "remaining": 8,
+      "fraction": "4691/4950",
+      "value": 0.9476767676767677
+    },
+    {
+      "round": 21,
+      "remaining": 7,
+      "fraction": "14429/15015",
+      "value": 0.9609723609723609
+    },
+    {
+      "round": 22,
+      "remaining": 6,
+      "fraction": "433204/444015",
+      "value": 0.9756517234778105
+    },
+    {
+      "round": 23,
+      "remaining": 5,
+      "fraction": "66523/67275",
+      "value": 0.9888219992567818
+    },
+    {
+      "round": 24,
+      "remaining": 4,
+      "fraction": "583/585",
+      "value": 0.9965811965811966
+    },
+    {
+      "round": 25,
+      "remaining": 3,
+      "fraction": "1",
+      "value": 1.0
+    },
+    {
+      "round": 26,
+      "remaining": 2,
+      "fraction": "1",
+      "value": 1.0
+    },
+    {
+      "round": 27,
+      "remaining": 1,
+      "fraction": "1",
+      "value": 1.0
+    }
+  ],
+  "fixed_physical_scenarios": {
+    "nominal": {
+      "fixed_expected_win": 0.8660874769555388,
+      "gap_vs_iid_pp": 5.127266214072401,
+      "gap_vs_private_quota_interval_pp": [
+        5.127266214072401,
+        5.127266214072401
+      ],
+      "gap_vs_public_quota_pp": -4.247203875428374
+    },
+    "alice_last_channel_loss": {
+      "fixed_expected_win": 0.8444824042126047,
+      "gap_vs_iid_pp": 2.9667589397789906,
+      "gap_vs_private_quota_interval_pp": [
+        2.9667589397789906,
+        2.9667589397789906
+      ],
+      "gap_vs_public_quota_pp": -6.407711149721784
+    },
+    "bob_middle_channel_loss": {
+      "fixed_expected_win": 0.8436322066007937,
+      "gap_vs_iid_pp": 2.8817391785978974,
+      "gap_vs_private_quota_interval_pp": [
+        2.8817391785978974,
+        2.8817391785978974
+      ],
+      "gap_vs_public_quota_pp": -6.4927309109028775
+    }
+  }
+}

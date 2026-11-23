@@ -1,0 +1,13 @@
+{
+  "weight_tables": 217,
+  "targets_per_table": 512,
+  "representatives_per_table": 16,
+  "verified_component_certificates": 3472,
+  "local_responses_scored_per_target": 64,
+  "labelled_games": 111104,
+  "exact_private_values": 111104,
+  "bound_gap_in_wins_histogram": {
+    "0": 111104
+  },
+  "first_unresolved_example": null
+}

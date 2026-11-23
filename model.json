@@ -1,0 +1,32 @@
+{
+  "settings": {
+    "alice_deg": [0, 60, 120],
+    "bob_deg": [30, 90, 150]
+  },
+  "scenarios": [
+    {
+      "name": "nominal",
+      "visibility": 0.99,
+      "eta_a": [0.98, 0.98, 0.98],
+      "eta_b": [0.98, 0.98, 0.98],
+      "offset_a_deg": [0, 0, 0],
+      "offset_b_deg": [0, 0, 0]
+    },
+    {
+      "name": "alice_last_channel_loss",
+      "visibility": 0.985,
+      "eta_a": [0.985, 0.965, 0.86],
+      "eta_b": [0.96, 0.98, 0.97],
+      "offset_a_deg": [0, 1.5, -3],
+      "offset_b_deg": [1, 0, -1]
+    },
+    {
+      "name": "bob_middle_channel_loss",
+      "visibility": 0.98,
+      "eta_a": [0.975, 0.96, 0.98],
+      "eta_b": [0.98, 0.87, 0.955],
+      "offset_a_deg": [-1, 0.5, 1.5],
+      "offset_b_deg": [0, -3, 2]
+    }
+  ]
+}
