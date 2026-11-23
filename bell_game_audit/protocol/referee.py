@@ -7,13 +7,15 @@ provenance independently.
 """
 
 import argparse
-import json
 from bisect import bisect_right
 from collections.abc import Sequence
 from dataclasses import dataclass
 from itertools import accumulate, chain
 from pathlib import Path
 from typing import BinaryIO
+
+from ..design.verify import read_result
+from ..resources import write_report
 
 
 @dataclass(frozen=True, slots=True)
@@ -112,12 +114,12 @@ def replay(
     if schedule not in ("iid", "quota"):
         raise ValueError("schedule must be iid or quota")
     quota = schedule == "quota"
-    if not (quota and rounds is None) and (type(rounds) is not int or rounds < 0):
-        raise ValueError("rounds must be a nonnegative integer")
     game = _Game.from_matrices(weights, target_parity)
     block_length = game.boundaries[-1]
-    if rounds is None:
+    if quota and rounds is None:
         rounds = block_length
+    if type(rounds) is not int or rounds < 0:
+        raise ValueError("rounds must be a nonnegative integer")
     if quota and rounds > block_length:
         raise ValueError("quota rounds cannot exceed one block")
 
@@ -163,13 +165,13 @@ def main(argv: Sequence[str] | None = None, *, prog: str | None = None) -> None:
     parser.add_argument("--rounds", type=int, help="default: 30 IID rounds or one complete quota block")
     args = parser.parse_args(argv)
     try:
-        winner = json.loads(args.result.read_text(encoding="utf-8"))["winner"]
+        winner = read_result(args.result)["winner"]
         with args.bits.open("rb") as stream:
             rounds = 30 if args.rounds is None and args.schedule == "iid" else args.rounds
             audit = replay(winner["weights"], winner["target_parity"], stream, rounds, schedule=args.schedule)
     except (OSError, ValueError, KeyError, TypeError) as error:
         parser.exit(2, f"{parser.prog}: {error}\n")
-    print(json.dumps(audit, indent=2))
+    write_report(audit)
 
 
 if __name__ == "__main__":

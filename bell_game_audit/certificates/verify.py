@@ -77,15 +77,14 @@ def _local_wins(weights, parity):
     rows = [i for i, row in enumerate(weights) if any(row)]
     cols = [j for j in range(len(weights[0])) if any(weights[i][j] for i in rows)]
     signed = [[weights[i][j] * (1 - 2 * parity[i][j]) for j in cols] for i in rows]
-    if len(rows) > len(cols):
-        signed = list(zip(*signed))
     # Enumerate the smaller side, fixing its first sign by global symmetry.
-    # For any such assignment, maximizing the other side is independent by column.
-    columns = list(zip(*signed))
+    # Each vector holds the payoffs for one setting of the opposite player.
+    opponent_payoffs = list(zip(*signed)) if len(rows) <= len(cols) else signed
+    free_signs = min(len(rows), len(cols)) - 1
     best_bias = 0
-    for suffix in product((-1, 1), repeat=len(signed) - 1):
+    for suffix in product((-1, 1), repeat=free_signs):
         signs = (1, *suffix)
-        bias = sum(abs(sum(a * w for a, w in zip(signs, col))) for col in columns)
+        bias = sum(abs(sum(a * w for a, w in zip(signs, vector))) for vector in opponent_payoffs)
         best_bias = max(best_bias, bias)
     return (sum(map(sum, weights)) + best_bias) // 2
 

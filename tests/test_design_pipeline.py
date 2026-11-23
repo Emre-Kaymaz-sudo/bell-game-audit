@@ -53,6 +53,12 @@ class DesignPipelineTests(unittest.TestCase):
         self.assertEqual(winner["weights"], [[1, 3, 5], [3, 3, 3], [5, 3, 1]])
         self.assertEqual(winner["target_parity"], [[1, 1, 0], [0, 0, 0], [0, 0, 0]])
 
+    def test_small_angular_drift_survives_large_offsets(self):
+        self.model["scenarios"][0]["offset_b_deg"][1] = 1e308
+        variants = with_extra_offsets(self.model, 5)["scenarios"][:3]
+        self.assertEqual([s["offset_b_deg"][1] % 360 for s in variants],
+                         [(1e308 % 360 + drift) % 360 for drift in (-5, 0, 5)])
+
     def test_report_metadata_remains_independent_of_the_source(self):
         self.model["settings"]["notes"] = {"labels": ["calibrated"]}
         self.model["scenarios"][0]["history"] = [{"events": ["initial"]}]

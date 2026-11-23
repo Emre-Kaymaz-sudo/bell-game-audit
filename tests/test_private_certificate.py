@@ -9,7 +9,7 @@ from fractions import Fraction
 from pathlib import Path
 
 from bell_game_audit.audit.private_history import private_position_bounds
-from bell_game_audit.certificates.build import build
+from bell_game_audit.certificates.build import build, layer_certificate
 from bell_game_audit.certificates.verify import verify
 
 
@@ -65,6 +65,15 @@ class PrivateCertificateTests(unittest.TestCase):
         self.assertEqual(Fraction(report["upper"]), Fraction(22, 27))
         total_loss = sum(c["copies"] * c["loss_per_copy"] for c in report["components"])
         self.assertEqual(total_loss, 5)
+
+    def test_rectangular_certificate_with_unused_settings(self):
+        weights = [[0, 0, 0], [0, 1, 1], [0, 1, 1], [0, 1, 1]]
+        parity = [[0, 0, 0], [0, 0, 0], [0, 0, 1], [0, 0, 1]]
+        for deck, target in [(weights, parity), (list(zip(*weights)), list(zip(*parity)))]:
+            with self.subTest(rows=len(deck), columns=len(deck[0])):
+                report = verify(deck, target, layer_certificate(deck))
+                self.assertEqual(deterministic_wins(deck, target), 5)
+                self.assertEqual((report["lower"], report["upper"]), ("5/6", "5/6"))
 
     def test_six_edge_private_prefix_distribution_matches_all_decks(self):
         component = next(c for c in self.certificate["components"] if len(c["actions"]) == 6)

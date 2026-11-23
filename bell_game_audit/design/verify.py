@@ -21,6 +21,13 @@ def reject_constant(token):
     raise ValueError(f"invalid JSON numeric literal {token!r}")
 
 
+def read_result(path: Path):
+    """Read a saved design, rejecting duplicate keys and non-finite literals."""
+    with path.open(encoding="utf-8-sig") as source:
+        document = json.load(source, object_pairs_hook=unique_keys, parse_constant=reject_constant)
+    return object_value(document, "result")
+
+
 def object_value(value, label):
     if not isinstance(value, dict):
         raise ValueError(f"{label} must be an object")
@@ -34,7 +41,7 @@ def triple(value, label):
 
 
 def number(value, label, lower=-math.inf, upper=math.inf):
-    if type(value) not in (int, float) or not math.isfinite(value):
+    if type(value) not in (int, float) or (type(value) is float and not math.isfinite(value)):
         raise ValueError(f"{label} must be a finite number")
     if not lower <= value <= upper:
         raise ValueError(f"{label} must be in [{lower}, {upper}]")
@@ -126,9 +133,7 @@ def main(argv=None, *, prog=None):
     parser.add_argument("result", type=Path)
     args = parser.parse_args(argv)
     try:
-        with args.result.open(encoding="utf-8-sig") as source:
-            document = json.load(source, object_pairs_hook=unique_keys, parse_constant=reject_constant)
-        classical, gap, count = verify_result(document)
+        classical, gap, count = verify_result(read_result(args.result))
     except (OSError, ValueError, KeyError, OverflowError) as exc:
         print(f"Witness verification failed: {exc}", file=sys.stderr)
         return 1

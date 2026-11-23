@@ -12,14 +12,14 @@ import argparse
 from fractions import Fraction
 from functools import lru_cache
 from itertools import combinations, product
-import json
 from math import comb, prod
 from pathlib import Path
 
 import numpy as np
 
 from ..certificates.build import build
-from ..design.verify import reject_constant, unique_keys, verify_result
+from ..design.verify import read_result, verify_result
+from ..resources import write_report
 
 
 def position_bounds(weights, target_parity):
@@ -43,13 +43,12 @@ def position_bounds(weights, target_parity):
     if rounds * comb(rounds, rounds // 2) > np.iinfo(np.int64).max:
         raise ValueError("integer tally would exceed int64 capacity")
 
-    response_masks = []
-    for response in product((0, 1), repeat=rows + columns):
-        a = np.array(response[:rows], dtype=np.int64)
-        b = np.array(response[rows:], dtype=np.int64)
-        response_masks.append(((a[:, None] ^ b[None, :]) == parity).ravel())
-    wins_by_strategy = np.array(response_masks, dtype=np.int64).T
-    iid = Fraction(int((np.array(quotas) @ wins_by_strategy).max()), rounds)
+    # Flipping every response on both sides preserves every XOR. Fix Alice's
+    # first bit to zero and score each distinct deterministic table once.
+    responses = np.array([(0, *bits) for bits in product((0, 1), repeat=rows + columns - 1)])
+    alice, bob = responses[:, :rows, None], responses[:, None, rows:]
+    wins = (alice ^ bob) == parity
+    wins_by_strategy = wins.reshape(len(responses), -1).T.astype(np.int64)
     ways = [np.array([comb(n, r) for r in range(n + 1)], dtype=np.int64) for n in quotas]
     shapes = tuple(n + 1 for n in quotas)
     mass = np.zeros(rounds + 1, dtype=np.int64)
@@ -72,7 +71,8 @@ def position_bounds(weights, target_parity):
         if int(mass[k]) != denominator:
             raise ArithmeticError(f"hypergeometric mass did not normalize at {k} remaining")
         by_position.append(Fraction(int(win_mass[k]), k * denominator))
-    return iid, by_position
+    # Before the first draw, the remaining deck gives exactly the IID weights.
+    return by_position[0], by_position
 
 
 def ratio(value):
@@ -157,16 +157,10 @@ def main(argv=None, *, prog=None):
     parser.add_argument("--output", type=Path, help="write the audit to a UTF-8 JSON file")
     args = parser.parse_args(argv)
     try:
-        document = json.loads(args.result.read_text(encoding="utf-8-sig"),
-                              object_pairs_hook=unique_keys, parse_constant=reject_constant)
-        output = audit(document)
+        output = audit(read_result(args.result))
     except (OSError, ValueError, ArithmeticError, KeyError, TypeError) as exc:
         parser.exit(2, f"{parser.prog}: {exc}\n")
-    report = json.dumps(output, allow_nan=False, indent=2)
-    if args.output:
-        args.output.write_text(report + "\n", encoding="utf-8")
-    else:
-        print(report)
+    write_report(output, args.output)
     return 0
 
 

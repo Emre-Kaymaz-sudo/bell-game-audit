@@ -3,13 +3,13 @@
 import argparse
 from collections import Counter, defaultdict
 from itertools import product
-import json
 from pathlib import Path
 
 import numpy as np
 
 from .build import build
 from ..design.search import balanced_weights
+from ..resources import write_report
 
 
 def survey(tables=None):
@@ -21,6 +21,8 @@ def survey(tables=None):
     for i, target in enumerate(targets):
         canonical = target ^ target[:1, :] ^ target[:, :1] ^ target[0, 0]
         groups[tuple(canonical.ravel())].append(i)
+    representatives = [(np.asarray(key).reshape(3, 3).tolist(), np.asarray(indices))
+                       for key, indices in groups.items()]
 
     answers = np.array(list(product((0, 1), repeat=3)), dtype=int)
     local_tables = (answers[:, None, :, None] ^ answers[None, :, None, :]).reshape(64, 3, 3)
@@ -34,10 +36,10 @@ def survey(tables=None):
     for weights in weight_tables:
         n_tables += 1
         weights = np.array(weights, dtype=int)
+        weight_rows = weights.tolist()
         full_loss = (errors @ weights.ravel()).min(axis=1)
-        for target_key, indices in groups.items():
-            canonical = np.array(target_key).reshape(3, 3).tolist()
-            _, checked = build(weights.tolist(), canonical)
+        for canonical, indices in representatives:
+            _, checked = build(weight_rows, canonical)
             forced = np.zeros(len(indices), dtype=int)
             for part in checked["components"]:
                 cells = tuple(3 * x + y for x, y in part["support"])
@@ -51,7 +53,7 @@ def survey(tables=None):
             if unresolved_example is None and np.any(differences):
                 first = int(np.flatnonzero(differences)[0])
                 unresolved_example = {
-                    "weights": weights.tolist(),
+                    "weights": weight_rows,
                     "target_parity": targets[indices[first]].tolist(),
                     "bound_gap_in_wins": int(differences[first]),
                 }
@@ -72,11 +74,7 @@ def main(argv=None, *, prog=None):
     parser = argparse.ArgumentParser(prog=prog, description=__doc__)
     parser.add_argument("--output", type=Path, help="write a UTF-8 summary for the full grid")
     args = parser.parse_args(argv)
-    result = json.dumps(survey(), indent=2, allow_nan=False)
-    if args.output:
-        args.output.write_text(result + "\n", encoding="utf-8")
-    else:
-        print(result)
+    write_report(survey(), args.output)
     return 0
 
 

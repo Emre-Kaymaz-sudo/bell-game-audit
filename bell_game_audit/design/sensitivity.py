@@ -2,21 +2,22 @@
 
 import argparse
 from copy import deepcopy
-import json
 from pathlib import Path
 
-import numpy as np
-
-from ..resources import default_model
-from .search import model_correlations, search_tables
+from ..resources import default_model, read_model, write_report
+from .search import _payoff_matrix, _rank_tables, model_correlations
 
 
 def _shift_middle_setting(scenario, offset):
     first, middle, last = scenario["offset_b_deg"]
+    shifted = middle + offset
+    if abs(middle) > 360 and shifted - middle != offset:
+        # At very large floating-point angles, an added degree can round away.
+        shifted = middle % 360 + offset
     return deepcopy({
         **scenario,
         "name": f"{scenario['name']}_offset_{offset:+d}",
-        "offset_b_deg": [first, middle + offset, last],
+        "offset_b_deg": [first, shifted, last],
     })
 
 
@@ -34,14 +35,17 @@ def with_extra_offsets(model, degrees):
 
 
 def sweep(model):
-    frozen = search_tables(model)["winner"]
-    weights = np.array(frozen["weights"])
-    signed = weights * (1 - 2 * np.array(frozen["target_parity"])) / weights.sum()
+    """Score both games on identical correlations, freezing the zero-offset winner."""
     rows = []
     for degrees in range(0, 46, 5):
-        stressed = with_extra_offsets(model, degrees)
-        frozen_wins = (1 + model_correlations(stressed) @ signed.ravel()) / 2
-        redesigned = search_tables(stressed)["winner"]
+        stressed = with_extra_offsets(model, degrees) if degrees else model
+        correlations = model_correlations(stressed)
+        names = [scenario["name"] for scenario in stressed["scenarios"]]
+        redesigned = _rank_tables(correlations, names)["winner"]
+        if degrees == 0:
+            frozen = redesigned
+            signed = _payoff_matrix(frozen).ravel()
+        frozen_wins = (1 + correlations @ signed) / 2
         rows.append({
             "extra_offset_deg": degrees,
             "frozen_worst_gap_pp": float(100 * (min(frozen_wins) - frozen["classical_win"])),
@@ -56,8 +60,7 @@ def main(argv=None, *, prog=None):
     parser = argparse.ArgumentParser(prog=prog, description=__doc__)
     parser.add_argument("--model", type=Path, default=default_model)
     args = parser.parse_args(argv)
-    model = json.loads(args.model.read_text(encoding="utf-8"))
-    print(json.dumps(sweep(model), indent=2, allow_nan=False))
+    write_report(sweep(read_model(args.model)))
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ import math
 from pathlib import Path
 import sys
 
-from .verify import physical_probability, verify_result
+from .verify import physical_probability, read_result, verify_result
 
 
 def detection_terms(settings, scenario):
@@ -119,7 +119,7 @@ def main(argv=None, *, prog=None):
     parser = argparse.ArgumentParser(prog=prog, description=__doc__)
     parser.add_argument("result", type=Path)
     args = parser.parse_args(argv)
-    result = json.loads(args.result.read_text(encoding="utf-8-sig"))
+    result = read_result(args.result)
     print(json.dumps(controls(result), separators=(",", ":"), allow_nan=False))
     return 0
 

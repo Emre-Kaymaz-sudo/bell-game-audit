@@ -1,0 +1,5 @@
+include *.py
+include PRIOR_ART.md PRIVATE_VALUE.md
+include result.json private_certificate.json private_survey.json quota_result.json
+include drift-sweep.svg assets/protocol-comparison.png presentation/bell-game-audit.pdf
+recursive-include tests *.py

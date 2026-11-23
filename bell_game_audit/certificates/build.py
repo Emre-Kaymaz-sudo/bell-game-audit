@@ -2,9 +2,10 @@
 
 import argparse
 from itertools import permutations, product
-import json
 from pathlib import Path
 
+from ..design.verify import read_result
+from ..resources import write_report
 from .packing import find_packing
 from .verify import verify
 
@@ -95,13 +96,9 @@ def main(argv=None, *, prog=None):
     parser.add_argument("result", type=Path)
     parser.add_argument("--output", type=Path, help="write the certificate to this path")
     args = parser.parse_args(argv)
-    winner = json.loads(args.result.read_text(encoding="utf-8-sig"))["winner"]
+    winner = read_result(args.result)["winner"]
     certificate, _ = build(winner["weights"], winner["target_parity"])
-    result = json.dumps(certificate, indent=2, allow_nan=False)
-    if args.output:
-        args.output.write_text(result + "\n", encoding="utf-8")
-    else:
-        print(result)
+    write_report(certificate, args.output)
     return 0
 
 

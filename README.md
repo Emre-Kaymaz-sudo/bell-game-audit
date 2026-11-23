@@ -67,17 +67,18 @@ The survey should report `exact_private_values = 111104`, with all 111,104 games
 | [`certificates/`](bell_game_audit/certificates/) | Construct, independently check, and survey private-history proofs. |
 | [`tests/`](tests/) | Check the published bounds, replay behavior, and calibration transformations. |
 
-An installation supplies the `bell-game-audit` command. From a checkout, `python -m bell_game_audit --help` lists the same commands. The original top-level scripts still run the commands printed in the PDF. The calibration ships inside the Python package. The JSON results at the repository root are the published reference outputs.
+An installation supplies the `bell-game-audit` command. From a checkout, `python -m bell_game_audit --help` lists the same commands. The top-level scripts support commands from the published presentation and earlier README. The JSON files at the repository root are the reference outputs.
+
+For library calls, import the XOR game solvers from `bell_game_audit.design.solver` and the subdeck packing algorithm from `bell_game_audit.certificates.packing`. [Solver functions](bell_game_audit/design/solver.py) · [Packing algorithm](bell_game_audit/certificates/packing.py)
 
 The design API accepts a calibration as a value. For example, this compares the same game search before and after a possible 15° drift in Bob’s middle setting. Both searches start from the same calibration, so the difference measures the effect of the added uncertainty.
 
 ```python
-import json
 from bell_game_audit.design.search import search_tables
 from bell_game_audit.design.sensitivity import with_extra_offsets
-from bell_game_audit.resources import default_model
+from bell_game_audit.resources import read_model
 
-calibration = json.loads(default_model.read_text(encoding="utf-8"))
+calibration = read_model()
 stressed = with_extra_offsets(calibration, 15)
 for model in (calibration, stressed):
     print(search_tables(model)["winner"]["worst_gap_pp"])
@@ -106,6 +107,8 @@ $$
 The best design using nine equally frequent pairs scores **−2.03 points** against its classical ceiling. The selected nine-pair design scores **+2.88 points**. If the referee may omit five pairs, the best four-pair CHSH control scores **+4.86 points**. These comparisons use independent draws and the same calibration profiles. Running `python -m bell_game_audit controls result.json` reproduces the controls. [Control calculations](bell_game_audit/design/controls.py)
 
 The nominal-only and three-profile searches select the same game. Additional drift can make redesign matter. At 35° of extra uncertainty in Bob's middle angle, the frozen game's margin is **−0.42 points** and a fresh search finds **+0.46 points**. Run `python -m bell_game_audit sensitivity` for the sweep or supply an edited calibration with `--model my_model.json`. [Drift sweep](drift-sweep.svg) · [Sensitivity calculation](bell_game_audit/design/sensitivity.py)
+
+To regenerate the figure, run `python -m pip install ".[figures]"` from the checkout, then `python -m bell_game_audit plot-drift --output drift-sweep.svg`. The output path is relative to your working directory.
 
 ## Where the QRNG enters
 

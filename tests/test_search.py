@@ -40,6 +40,26 @@ class InverseDesignTests(unittest.TestCase):
             s["eta_a"] = [1, 1, 1]
         np.testing.assert_array_equal(model_correlations(blind), 0)
 
+    def test_search_rejects_calibrations_the_witness_verifier_cannot_replay(self):
+        scenario = self.model["scenarios"][0]
+        for field, value in (("name", " "), ("name", 1), ("visibility", True),
+                             ("visibility", "0.99"), ("eta_a", [1, True, 1]),
+                             ("offset_b_deg", [0, "1", 0])):
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                search_tables({**self.model, "scenarios": [{**scenario, field: value}]})
+
+    def test_large_angles_preserve_full_turn_symmetry(self):
+        model = deepcopy(self.model)
+        model["settings"]["alice_deg"][0] = 10**400 + 137
+        model["settings"]["bob_deg"][2] = 1e308
+        model["scenarios"][0]["offset_b_deg"][2] = 1e308
+        reduced = deepcopy(model)
+        reduced["settings"]["alice_deg"][0] %= 360
+        reduced["settings"]["bob_deg"][2] %= 360
+        reduced["scenarios"][0]["offset_b_deg"][2] %= 360
+        np.testing.assert_array_equal(model_correlations(model), model_correlations(reduced))
+        verify_result(search_tables(model))
+
     def test_chsh_control_and_angular_stress(self):
         reference = controls(self.result)["best_chsh"]
         self.assertEqual(reference["games_compared"], 72)

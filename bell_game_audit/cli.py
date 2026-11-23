@@ -34,4 +34,8 @@ def main(argv=None):
     name = parser.parse_args(args[:1]).command
     module_name, _ = COMMANDS[name]
     command = import_module(module_name, package=__package__)
-    return command.main(args[1:], prog=f"{parser.prog} {name}")
+    prog = f"{parser.prog} {name}"
+    try:
+        return command.main(args[1:], prog=prog)
+    except (OSError, ValueError, KeyError) as error:
+        parser.exit(2, f"{prog}: {error}\n")
